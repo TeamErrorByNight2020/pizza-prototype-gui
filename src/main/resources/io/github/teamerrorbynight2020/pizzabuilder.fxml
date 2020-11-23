@@ -32,7 +32,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label id="pizzaTypeLabel" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-family: serif;" styleClass="heading" text="[Size] Pizza" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" />
+            <Label fx:id="pizzaTypeLabel" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-family: serif;" styleClass="heading" text="[Size] Pizza" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" />
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.rowSpan="3">
                <image>
                   <Image url="@pizza.png" />
@@ -43,45 +43,45 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox id="crustChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="crustChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
             <Label text="Cheese" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox id="cheeseChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="cheeseChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
             <Label text="Sauce" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox id="sauceChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="sauceChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
             <Label text="Topping 1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="toppingChoice1" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
             <Label text="Topping 2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="toppingChoice2" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
             <Label text="Topping 3" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
+            <ChoiceBox fx:id="toppingChoice3" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
             <Label text="Topping 4" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ChoiceBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
-            <Label text="\$x.xx" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add to Order" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="8" GridPane.rowSpan="2147483647" />
+            <ChoiceBox fx:id="toppingChoice4" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
+            <Label fx:id="priceLabel" text="\$x.xx" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+            <Button onAction="#handleSubmitButtonAction" fx:id="addToOrderButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add to Order" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="8" GridPane.rowSpan="2147483647" />
          </children>
       </GridPane>
    </children>
