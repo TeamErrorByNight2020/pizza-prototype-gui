@@ -32,23 +32,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="pizzaTypeLabel" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-font-family: serif;" styleClass="heading" text="[Size] Pizza" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" />
+            <Label fx:id="pizzaTypeLabel" styleClass="heading" text="Pizza Name Here" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" />
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.rowSpan="3">
                <image>
                   <Image url="@pizza.png" />
                </image>
             </ImageView>
-            <Label text="Crust" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
+            <Label text="Crust" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
             <ChoiceBox fx:id="crustChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
-            <Label text="Cheese" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
+            <Label text="Cheese" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2"/>
             <ChoiceBox fx:id="cheeseChoice" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
             <Label text="Sauce" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <font>
