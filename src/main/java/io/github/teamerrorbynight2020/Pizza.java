@@ -11,7 +11,7 @@ public class Pizza {
     LARGE("Large Pizza (15-inch)", 800, 100), XLARGE("X-Large Pizza (17-inch)", 1000, 125);
 
     private final String name;
-    /** The price (in cents) of this size pizza with 1 topping  */
+    /** The price (in cents) of this size pizza with 1 topping */
     public final int priceBase;
     /** The price (in cents) of one extra topping on this size pizza. */
     public final int perTopping; // internally, prices are stored as an integer of cents
@@ -21,6 +21,7 @@ public class Pizza {
       this.priceBase = priceBase;
       this.perTopping = perTopping;
     }
+
     /**
      * @returns Product name for a pizza of this size i.e. "Small Pizza (11-inch)"
      */
@@ -145,9 +146,9 @@ public class Pizza {
   public Pizza setNthTopping(int n, Topping t) {
     int i = n - 1;
     if (0 <= i && i < toppings.length) { // check that n is within bounds
-      this.toppings[i] = t;              // set nth topping
+      this.toppings[i] = t; // set nth topping
     }
-    return this;  // return the pizza, so the setter is chainable
+    return this; // return the pizza, so the setter is chainable
   }
 
   public int getToppingCount() {
@@ -160,7 +161,7 @@ public class Pizza {
     return count;
   }
 
-  public int calculatePrice() {
+  public int getPrice() {
     int price = size.priceBase;
     int count = getToppingCount();
     if (count > 1) {
@@ -168,10 +169,12 @@ public class Pizza {
     }
     return price;
   }
+
   public String getName() {
     return this.size.name;
   }
-  public String description() {
+
+  public String getDescription() {
     String description = "";
     description += crust + ", ";
     description += sauce + ", ";

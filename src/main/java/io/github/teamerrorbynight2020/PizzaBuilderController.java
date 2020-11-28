@@ -92,8 +92,8 @@ public class PizzaBuilderController {
     priceLabel.setText(getPizzaPrice());
     // TODO: Remove debug output
     System.out.println(pizza.getName());
-    System.out.println(pizza.description());
-    System.out.println(App.formatPrice(pizza.calculatePrice()));
+    System.out.println(pizza.getDescription());
+    System.out.println(App.formatPrice(pizza.getPrice()));
   }
 
   private String getPizzaType() {
@@ -101,7 +101,7 @@ public class PizzaBuilderController {
   }
 
   private String getPizzaPrice() {
-    return App.formatPrice(pizza.calculatePrice());
+    return App.formatPrice(pizza.getPrice());
   }
 
 
@@ -109,8 +109,8 @@ public class PizzaBuilderController {
   private void handleSubmitButtonAction() {
     // TODO: add item to order
     System.out.println(pizza.getName());
-    System.out.println(pizza.description());
-    System.out.println(App.formatPrice(pizza.calculatePrice()));
+    System.out.println(pizza.getDescription());
+    System.out.println(App.formatPrice(pizza.getPrice()));
     ((javafx.stage.Stage) addToOrderButton.getScene().getWindow()).close();
   }
 }
