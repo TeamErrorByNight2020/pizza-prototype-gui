@@ -1,6 +1,8 @@
-package io.github.teamerrorbynight2020;
+package io.github.teamerrorbynight2020.model;
 
-public class Pizza {
+import java.util.*;
+
+public class Pizza extends OrderItem {
   // The maximum number of toppings which can go on a single pizza.
   public static final int MAX_TOPPINGS = 4;
 
@@ -12,16 +14,29 @@ public class Pizza {
 
     private final String name;
     /** The price (in cents) of this size pizza with 1 topping */
-    public final int priceBase;
+    private final int priceBase;
     /** The price (in cents) of one extra topping on this size pizza. */
-    public final int perTopping; // internally, prices are stored as an integer of cents
+    private final int perTopping; // internally, prices are stored as an integer of cents
 
     private Size(String name, int priceBase, int perTopping) {
       this.name = name;
       this.priceBase = priceBase;
       this.perTopping = perTopping;
     }
+    public int calculatePrice(int toppingCount) {
+      int price = this.priceBase;
+      if (toppingCount > 1) {
+        price += (toppingCount - 1) * perTopping;
+      }
+      return price;
+    }
 
+    public int getBasePrice() {
+      return this.priceBase;
+    }
+    public int getPricePerTopping() {
+      return this.perTopping;
+    }
     /**
      * @returns Product name for a pizza of this size i.e. "Small Pizza (11-inch)"
      */
@@ -124,9 +139,17 @@ public class Pizza {
     this.size = size;
   }
 
+  public CrustOption getCrust() {
+    return this.crust;
+  }
+
   public Pizza setCrust(CrustOption crust) {
     this.crust = crust;
     return this; // return the pizza, so the setter is chainable
+  }
+
+  public CheeseOption getCheese() {
+    return this.cheese;
   }
 
   public Pizza setCheese(CheeseOption cheese) {
@@ -134,9 +157,27 @@ public class Pizza {
     return this; // return the pizza, so the setter is chainable
   }
 
+  public SauceOption getSauce() {
+    return this.sauce;
+  }
+
   public Pizza setSauce(SauceOption sauce) {
     this.sauce = sauce;
     return this; // return the pizza, so the setter is chainable
+  }
+
+  public int getToppingCount() {
+    int count = 0;
+    for (Topping t : toppings) {
+      if (t != null && t != Topping.NO_TOPPING) {
+        count += 1;
+      }
+    }
+    return count;
+  }
+
+  public Topping getNthTopping(int n) {
+    return this.toppings[n - 1];
   }
 
   /**
@@ -151,39 +192,24 @@ public class Pizza {
     return this; // return the pizza, so the setter is chainable
   }
 
-  public int getToppingCount() {
-    int count = 0;
-    for (Topping t : toppings) {
-      if (t != null && t != Topping.NO_TOPPING) {
-        count += 1;
-      }
-    }
-    return count;
-  }
-
   public int getPrice() {
-    int price = size.priceBase;
-    int count = getToppingCount();
-    if (count > 1) {
-      price += (count - 1) * size.perTopping;
-    }
-    return price;
+    return size.calculatePrice(getToppingCount());
   }
 
   public String getName() {
     return this.size.name;
   }
 
-  public String getDescription() {
-    String description = "";
-    description += crust + ", ";
-    description += sauce + ", ";
-    description += cheese + ", ";
+  public List<String> getDescriptionItems() {
+    List<String> items = new ArrayList<String>();
+    items.add(crust.toString());
+    items.add(sauce.toString());
+    items.add(cheese.toString());
     for (Topping t : toppings) {
       if (t != null && t != Topping.NO_TOPPING) {
-        description += t + ", ";
+        items.add(t.toString());
       }
     }
-    return description;
+    return items;
   }
 }

@@ -1,17 +1,32 @@
-package io.github.teamerrorbynight2020;
+package io.github.teamerrorbynight2020.controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.stage.*;
+
+import java.io.*;
+
+import io.github.teamerrorbynight2020.model.Pizza;
+import io.github.teamerrorbynight2020.App;
 
 public class PizzaBuilderController {
-  // The Pizza.
+  // The Pizza which is currently being modified.
   private Pizza pizza;
 
-  public PizzaBuilderController(Pizza pizza) {
+  private PizzaBuilderController(Pizza pizza) {
     this.pizza = pizza;
   }
+
+  public static void show(Pizza pizza) throws IOException {
+    PizzaBuilderController controller = new PizzaBuilderController(pizza);
+    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("pizzabuilder.fxml"));
+    fxmlLoader.setController(controller);
+    Stage stage = new Stage();
+    stage.setScene(new Scene(fxmlLoader.load(), 640, 480));
+    stage.show();
+  }
+
   // GUI Controls
   @FXML
   private Label pizzaTypeLabel;
@@ -31,18 +46,19 @@ public class PizzaBuilderController {
   @FXML
   private void initialize() {
     pizzaTypeLabel.setText(pizza.getName());
-    priceLabel.setText(getPizzaPrice());
+    priceLabel.setText(pizza.getPriceFormatted());
+
     // Initialize choiceboxes
     // TODO: don't repeat yourself
     crustChoice.getItems().setAll(Pizza.CrustOption.values());
-    crustChoice.setValue(crustChoice.getItems().get(0));
+    crustChoice.setValue(pizza.getCrust());
     crustChoice.setOnAction((event) -> {
       pizza.setCrust(crustChoice.getValue());
       update();
     });
 
     cheeseChoice.getItems().setAll(Pizza.CheeseOption.values());
-    cheeseChoice.setValue(cheeseChoice.getItems().get(0));
+    cheeseChoice.setValue(pizza.getCheese());
     cheeseChoice.setOnAction((event) -> {
       pizza.setCheese(cheeseChoice.getValue());
       update();
@@ -56,28 +72,28 @@ public class PizzaBuilderController {
     });
 
     toppingChoice1.getItems().setAll(Pizza.Topping.values());
-    toppingChoice1.setValue(toppingChoice1.getItems().get(0));
+    toppingChoice1.setValue(pizza.getNthTopping(1));
     toppingChoice1.setOnAction((event) -> {
       pizza.setNthTopping(1, toppingChoice1.getValue());
       update();
     });
 
     toppingChoice2.getItems().setAll(Pizza.Topping.values());
-    toppingChoice2.setValue(toppingChoice1.getItems().get(0));
+    toppingChoice2.setValue(pizza.getNthTopping(2));
     toppingChoice2.setOnAction((event) -> {
       pizza.setNthTopping(2, toppingChoice2.getValue());
       update();
     });
 
     toppingChoice3.getItems().setAll(Pizza.Topping.values());
-    toppingChoice3.setValue(toppingChoice1.getItems().get(0));
+    toppingChoice3.setValue(pizza.getNthTopping(3));
     toppingChoice3.setOnAction((event) -> {
       pizza.setNthTopping(3, toppingChoice3.getValue());
       update();
     });
 
     toppingChoice4.getItems().setAll(Pizza.Topping.values());
-    toppingChoice4.setValue(toppingChoice1.getItems().get(0));
+    toppingChoice4.setValue(pizza.getNthTopping(4));
     toppingChoice4.setOnAction((event) -> {
       pizza.setNthTopping(4, toppingChoice4.getValue());
       update();
@@ -85,28 +101,18 @@ public class PizzaBuilderController {
   }
 
   private void update() {
-    pizzaTypeLabel.setText(getPizzaType());
-    priceLabel.setText(getPizzaPrice());
-    // TODO: Remove debug output
-    System.out.println(pizza.getName());
-    System.out.println(pizza.getDescription());
-    System.out.println(App.formatPrice(pizza.getPrice()));
+    pizzaTypeLabel.setText(pizza.getName());
+    priceLabel.setText(pizza.getPriceFormatted());
   }
 
-  private String getPizzaType() {
-    return pizza.getName();
-  }
-
-  private String getPizzaPrice() {
-    return App.formatPrice(pizza.getPrice());
-  }
 
   @FXML
   private void handleSubmitButtonAction() {
-    // TODO: add item to order
+    // TODO: add item to order, remove debug output
     System.out.println(pizza.getName());
     System.out.println(pizza.getDescription());
-    System.out.println(App.formatPrice(pizza.getPrice()));
-    ((javafx.stage.Stage) addToOrderButton.getScene().getWindow()).close();
+    System.out.println(pizza.getPriceFormatted());
+    // Close window
+    ((Stage) addToOrderButton.getScene().getWindow()).close();
   }
 }
