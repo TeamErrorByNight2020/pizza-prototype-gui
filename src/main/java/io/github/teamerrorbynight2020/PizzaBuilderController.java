@@ -6,6 +6,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
 public class PizzaBuilderController {
+  // The Pizza.
+  private Pizza pizza;
+
+  public PizzaBuilderController(Pizza pizza) {
+    this.pizza = pizza;
+  }
   // GUI Controls
   @FXML
   private Label pizzaTypeLabel;
@@ -21,15 +27,6 @@ public class PizzaBuilderController {
   private Button addToOrderButton;
   @FXML
   private Label priceLabel;
-  // The Pizza.
-  private Pizza pizza;
-
-  public PizzaBuilderController() {
-    this(Pizza.Size.MEDIUM);
-  }
-  public PizzaBuilderController(Pizza.Size size) {
-    this.pizza = new Pizza(size);
-  }
 
   @FXML
   private void initialize() {
@@ -87,7 +84,7 @@ public class PizzaBuilderController {
     });
   }
 
-  public void update() {
+  private void update() {
     pizzaTypeLabel.setText(getPizzaType());
     priceLabel.setText(getPizzaPrice());
     // TODO: Remove debug output
@@ -103,7 +100,6 @@ public class PizzaBuilderController {
   private String getPizzaPrice() {
     return App.formatPrice(pizza.getPrice());
   }
-
 
   @FXML
   private void handleSubmitButtonAction() {

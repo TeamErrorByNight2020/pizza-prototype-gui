@@ -26,18 +26,15 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
-        showPizzaBuilder(Pizza.Size.SMALL);
-        showPizzaBuilder(Pizza.Size.MEDIUM);
-        showPizzaBuilder(Pizza.Size.LARGE);
-        showPizzaBuilder(Pizza.Size.XLARGE);
+        showPizzaBuilder(new Pizza(Pizza.Size.LARGE));
     }
 
-    public void showPizzaBuilder(Pizza.Size size) throws IOException {
+    public void showPizzaBuilder(Pizza pizza) throws IOException {
+        PizzaBuilderController controller = new PizzaBuilderController(pizza);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("pizzabuilder.fxml"));
-        fxmlLoader.setController(new PizzaBuilderController(size));
-        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+        fxmlLoader.setController(controller);
         Stage stage = new Stage();
-        stage.setScene(scene);
+        stage.setScene(new Scene(fxmlLoader.load(), 640, 480));
         stage.show();
     }
 
