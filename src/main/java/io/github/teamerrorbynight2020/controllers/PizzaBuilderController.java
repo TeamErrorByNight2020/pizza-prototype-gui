@@ -18,13 +18,17 @@ public class PizzaBuilderController {
     this.pizza = pizza;
   }
 
-  public static void show(Pizza pizza) throws IOException {
+  public static void show(Pizza pizza){
     PizzaBuilderController controller = new PizzaBuilderController(pizza);
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("pizzabuilder.fxml"));
+    try {
+          FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("pizzabuilder.fxml"));
     fxmlLoader.setController(controller);
     Stage stage = new Stage();
-    stage.setScene(new Scene(fxmlLoader.load(), 640, 480));
+    stage.setScene(new Scene(fxmlLoader.load(), 350, 400));
     stage.show();
+    } catch (IOException e) {
+      System.out.println(e);
+    }
   }
 
   // GUI Controls
