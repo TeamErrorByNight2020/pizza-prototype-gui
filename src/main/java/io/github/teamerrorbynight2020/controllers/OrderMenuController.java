@@ -9,10 +9,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
+
 import java.util.*;
 
 public class OrderMenuController {
@@ -37,12 +42,13 @@ public class OrderMenuController {
     orderListView.getItems().add(o);
   }
 
-  private void updateSubtotal() {
+  private int updateSubtotal() {
     int subtotal = 0;
     for (OrderItem o : orderListView.getItems()) {
       subtotal += o.getPrice();
     }
     orderSubtotalLabel.setText(OrderItem.formatPriceString(subtotal));
+    return subtotal;
   }
 
   @FXML
@@ -153,7 +159,22 @@ public class OrderMenuController {
 
   @FXML
   void handleCompleteOrder(ActionEvent event) {
-
+    Alert alert = new Alert(AlertType.CONFIRMATION);
+    alert.setTitle("Order Confirmation");
+    alert.setHeaderText("Your order total is " + OrderItem.formatPriceString(updateSubtotal()));
+    alert.setContentText("Are you sure you want to place your order? (This will end the prototype.)");
+    if (alert.showAndWait().get().equals(ButtonType.OK)) {
+      handleFinishOrder();
+    }
   }
 
+  void handleFinishOrder() {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setTitle("Order Confirmed.");
+    alert.setHeaderText("Thank you!" );
+    alert.setContentText("Your order has been recieved. We'll see you soon!");
+    ((Stage) completeOrderButton.getScene().getWindow()).close();
+    alert.showAndWait();
+    System.exit(0);
+  }
 }
