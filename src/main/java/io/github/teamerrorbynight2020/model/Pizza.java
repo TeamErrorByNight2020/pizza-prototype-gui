@@ -3,7 +3,7 @@ package io.github.teamerrorbynight2020.model;
 import java.util.*;
 
 public class Pizza extends OrderItem {
-  // The maximum number of toppings which can go on a single pizza.
+  /** The maximum number of toppings which can go on a single pizza. */
   public static final int MAX_TOPPINGS = 4;
 
   /** Sizes of pizza. */
@@ -23,6 +23,7 @@ public class Pizza extends OrderItem {
       this.priceBase = priceBase;
       this.perTopping = perTopping;
     }
+
     public int calculatePrice(int toppingCount) {
       int price = this.priceBase;
       if (toppingCount > 1) {
@@ -34,9 +35,11 @@ public class Pizza extends OrderItem {
     public int getBasePrice() {
       return this.priceBase;
     }
+
     public int getPricePerTopping() {
       return this.perTopping;
     }
+
     /**
      * @returns Product name for a pizza of this size i.e. "Small Pizza (11-inch)"
      */
@@ -47,8 +50,7 @@ public class Pizza extends OrderItem {
   }
 
   /**
-   * Toppings which can go on a Pizza. The default value for this property is the
-   * first item in this Enum.
+   * Toppings which can go on a Pizza.
    */
   public static enum Topping {
     NO_TOPPING("No Topping"), PEPPERONI("Pepperoni"), HAM("Ham"), SAUSAGE("Sausage"), GREEN_PEPPER("Green Pepper"),
@@ -67,8 +69,7 @@ public class Pizza extends OrderItem {
   }
 
   /**
-   * Choices of whether or not the pizza contains cheese. The default value for
-   * this property is the first item in this Enum.
+   * Choices of whether or not the pizza contains cheese.
    */
   public static enum CheeseOption {
     REG_CHEESE("Mozzarella Cheese"), EXTRA_CHEESE("Extra Mozzarella Cheese"), NO_CHEESE("No Cheese");
@@ -86,8 +87,7 @@ public class Pizza extends OrderItem {
   }
 
   /**
-   * Choices of red sauce. The default value for this property is the first item
-   * in this Enum.
+   * Choices of red sauce.
    */
   public static enum SauceOption {
     RED_SAUCE("Red Sauce"), NO_SAUCE("No Sauce");
@@ -105,8 +105,7 @@ public class Pizza extends OrderItem {
   }
 
   /**
-   * Choices of crust. The default value for this property is the first item in
-   * this Enum.
+   * Choices of crust.
    */
   public static enum CrustOption {
     TRADITIONAL("Traditional"), THIN_CRUST("Thin Crust"), DEEP_DISH("Deep Dish");
@@ -125,9 +124,9 @@ public class Pizza extends OrderItem {
 
   private final Size size;
   // default parameters:
-  private CheeseOption cheese = CheeseOption.values()[0];
-  private SauceOption sauce = SauceOption.values()[0];
-  private CrustOption crust = CrustOption.values()[0];
+  private CheeseOption cheese;
+  private SauceOption sauce;
+  private CrustOption crust;
   private Topping[] toppings = new Topping[MAX_TOPPINGS]; // 4 slots for topping choice.
 
   /**
@@ -137,6 +136,12 @@ public class Pizza extends OrderItem {
    */
   public Pizza(Size size) {
     this.size = size;
+    cheese = CheeseOption.REG_CHEESE;
+    sauce = SauceOption.RED_SAUCE;
+    crust = CrustOption.TRADITIONAL;
+    for (int i = 0; i < toppings.length; i++) {
+      toppings[i] = Topping.NO_TOPPING;
+    }
   }
 
   public CrustOption getCrust() {

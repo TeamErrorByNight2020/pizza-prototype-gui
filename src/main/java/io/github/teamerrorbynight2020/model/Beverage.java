@@ -15,7 +15,6 @@ public class Beverage extends OrderItem {
       this.name = name;
       this.price = price;
     }
-
     public int getPrice() {
       return this.price;
     }
