@@ -1,7 +1,4 @@
 package io.github.teamerrorbynight2020.model;
-
-import java.util.*;
-
 public class Beverage extends OrderItem {
 
   public static enum Size {
@@ -15,6 +12,7 @@ public class Beverage extends OrderItem {
       this.name = name;
       this.price = price;
     }
+
     public int getPrice() {
       return this.price;
     }
@@ -26,8 +24,8 @@ public class Beverage extends OrderItem {
   }
 
   public static enum BeverageOption {
-    // TODO: Declare remaining drink sizes and pricing scheme.
-    PEPSI("Pepsi"), DIET_PEPSI("Diet Pepsi");
+    PEPSI("Pepsi"), DIET_PEPSI("Diet Pepsi"), ORANGE_CRUSH("Orange CRUSH"), DIET_CRUSH("Diet CRUSH"),
+    MUG_ROOT_BEER("Mug Root Beer"), DIET_ROOT_BEER("Diet Root Beer");
 
     private final String name;
 
@@ -54,16 +52,11 @@ public class Beverage extends OrderItem {
 
   @Override
   public String getName() {
-    return beverage.toString();
+    return size.toString() + beverage.toString();
   }
 
   @Override
   public int getPrice() {
     return size.getPrice();
-  }
-
-  @Override
-  public List<String> getDescriptionItems() {
-    return Arrays.asList(size.toString());
   }
 }
