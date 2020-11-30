@@ -20,9 +20,4 @@ public class GenericOrderItem extends OrderItem {
   public int getPrice() {
     return this.price;
   }
-
-  @Override
-  public List<String> getDescriptionItems() {
-    return null;
-  }
 }

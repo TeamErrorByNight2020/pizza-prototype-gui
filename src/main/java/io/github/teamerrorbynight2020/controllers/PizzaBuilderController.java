@@ -13,13 +13,15 @@ import io.github.teamerrorbynight2020.App;
 public class PizzaBuilderController {
   // The Pizza which is currently being modified.
   private Pizza pizza;
+  private OrderMenuController orderController;
 
-  private PizzaBuilderController(Pizza pizza) {
-    this.pizza = pizza;
+  private PizzaBuilderController(Pizza.Size size, OrderMenuController orderController) {
+    this.pizza = new Pizza(size);
+    this.orderController = orderController;
   }
 
-  public static void show(Pizza pizza){
-    PizzaBuilderController controller = new PizzaBuilderController(pizza);
+  public static void show(Pizza.Size size, OrderMenuController orderController) {
+    PizzaBuilderController controller = new PizzaBuilderController(size, orderController);
     try {
           FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("pizzabuilder.fxml"));
     fxmlLoader.setController(controller);
@@ -112,10 +114,8 @@ public class PizzaBuilderController {
 
   @FXML
   private void handleSubmitButtonAction() {
-    // TODO: add item to order, remove debug output
-    System.out.println(pizza.getName());
-    System.out.println(pizza.getDescription());
-    System.out.println(pizza.getPriceFormatted());
+    // Add item to order.
+    orderController.addOrderItem(pizza);
     // Close window
     ((Stage) addToOrderButton.getScene().getWindow()).close();
   }

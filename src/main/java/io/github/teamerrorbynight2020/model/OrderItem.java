@@ -7,6 +7,11 @@ import java.util.*;
 
 public abstract class OrderItem {
 
+  public static String formatPriceString(int price) {
+    NumberFormat formatter = NumberFormat.getCurrencyInstance();
+    return formatter.format(price / 100.0);
+  }
+
   /** @return The name of the item */
   public abstract String getName();
 
@@ -15,8 +20,7 @@ public abstract class OrderItem {
 
   /** @return The price of this menu item as a formatted string i.e. $5.00 */
   public final String getPriceFormatted() {
-    NumberFormat formatter = NumberFormat.getCurrencyInstance();
-    return formatter.format(this.getPrice() / 100.0);
+    return formatPriceString(this.getPrice());
   }
 
   /**
@@ -30,12 +34,15 @@ public abstract class OrderItem {
    * @return A single-line description of the order item, separated by commas.
    */
   public final String getDescription() {
+    if (getDescriptionItems().isEmpty()) {
+      return "";
+    }
     return String.join(", ", getDescriptionItems());
   }
 
 
   @Override
   public String toString() {
-    return getName() + "\n" + getDescription();
+    return getName() + "\n" + (getDescription().length() > 0 ? getDescription() + "\n" : "") + getPriceFormatted();
   }
 }

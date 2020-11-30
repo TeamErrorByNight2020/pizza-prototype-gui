@@ -54,16 +54,11 @@ public class Beverage extends OrderItem {
 
   @Override
   public String getName() {
-    return beverage.toString();
+    return beverage.toString() + " - " + size.toString();
   }
 
   @Override
   public int getPrice() {
     return this.size.getPrice();
-  }
-
-  @Override
-  public List<String> getDescriptionItems() {
-    return Arrays.asList(size.toString());
   }
 }
