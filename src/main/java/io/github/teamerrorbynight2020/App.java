@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.text.NumberFormat;
 import io.github.teamerrorbynight2020.model.Pizza;
 import io.github.teamerrorbynight2020.controllers.PizzaBuilderController;
 
@@ -17,11 +16,6 @@ import io.github.teamerrorbynight2020.controllers.PizzaBuilderController;
 public class App extends Application {
 
     private static Scene scene;
-
-    public static String formatPrice(int cents) {
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        return formatter.format(cents / 100.0);
-    }
 
     @Override
     public void start(Stage stage) throws IOException {
