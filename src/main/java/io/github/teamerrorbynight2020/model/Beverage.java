@@ -1,4 +1,6 @@
 package io.github.teamerrorbynight2020.model;
+
+import java.util.*;
 public class Beverage extends OrderItem {
 
   public static enum Size {
@@ -52,11 +54,16 @@ public class Beverage extends OrderItem {
 
   @Override
   public String getName() {
-    return size.toString() + beverage.toString();
+    return beverage.toString();
   }
 
   @Override
   public int getPrice() {
-    return size.getPrice();
+    return this.size.getPrice();
+  }
+
+  @Override
+  public List<String> getDescriptionItems() {
+    return Arrays.asList(size.toString());
   }
 }

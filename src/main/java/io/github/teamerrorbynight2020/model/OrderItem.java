@@ -32,4 +32,10 @@ public abstract class OrderItem {
   public final String getDescription() {
     return String.join(", ", getDescriptionItems());
   }
+
+
+  @Override
+  public String toString() {
+    return getName() + "\n" + getDescription();
+  }
 }
