@@ -127,7 +127,7 @@ public class Pizza extends OrderItem {
   private CheeseOption cheese;
   private SauceOption sauce;
   private CrustOption crust;
-  private Topping[] toppings = new Topping[MAX_TOPPINGS]; // 4 slots for topping choice.
+  private Topping[] toppings; // 4 slots for topping choice.
 
   /**
    * Constructs a default pizza of the given size
@@ -135,13 +135,24 @@ public class Pizza extends OrderItem {
    * @param size Which pizza size to use. e.g. Pizza.Size.MEDIUM
    */
   public Pizza(Size size) {
-    this.size = size;
-    cheese = CheeseOption.REG_CHEESE;
-    sauce = SauceOption.RED_SAUCE;
-    crust = CrustOption.TRADITIONAL;
+    this(size, CrustOption.TRADITIONAL, SauceOption.RED_SAUCE, CheeseOption.REG_CHEESE, new Topping[MAX_TOPPINGS]);
     for (int i = 0; i < toppings.length; i++) {
       toppings[i] = Topping.NO_TOPPING;
     }
+  }
+
+  /** Internal constructor */
+  private Pizza(Size size, CrustOption crust, SauceOption sauce, CheeseOption cheese, Topping[] toppings) {
+    this.size = size;
+    this.crust = crust;
+    this.sauce = sauce;
+    this.cheese = cheese;
+    this.toppings = toppings;
+  }
+
+  @Override
+  public Pizza clone() {
+    return new Pizza(size, crust, sauce, cheese, toppings.clone());
   }
 
   public CrustOption getCrust() {
