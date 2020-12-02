@@ -41,7 +41,7 @@
                         </rowConstraints>
                         <children>
                            <Label text="🍕Small Pizza" />
-                           <Label text="\$8.00&#10;Extra toppings 1.00" GridPane.columnIndex="1" />
+                           <Label text="\$4.00&#10;Extra toppings 0.50" GridPane.columnIndex="1" />
                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAddSmallPizza" text="CUSTOMIZE" GridPane.columnIndex="2" />
                            <Label text="🍕Medium Pizza" GridPane.rowIndex="1" />
                            <Label text="\$6.00&#10;Extra toppings 0.75" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -50,7 +50,7 @@
                            <Label text="\$8.00&#10;Extra toppings 1.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAddLargePizza" text="CUSTOMIZE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            <Label text="🍕X-Large Pizza" GridPane.rowIndex="3" />
-                           <Label text="\$10.00&#10;Extra toppings 1.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           <Label text="\$10.00&#10;Extra toppings 1.25" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAddXLargePizza" text="CUSTOMIZE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                            <Label text="🍪Chocolate Chip Cookie" GridPane.rowIndex="4" />
                            <Label text="\$4.00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
