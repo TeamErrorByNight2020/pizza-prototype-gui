@@ -1,7 +1,4 @@
 package io.github.teamerrorbynight2020.model;
-
-import java.util.List;
-
 public class GenericOrderItem extends OrderItem {
   private String name;
   private int price;

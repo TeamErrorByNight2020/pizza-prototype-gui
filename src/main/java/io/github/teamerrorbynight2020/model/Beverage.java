@@ -1,6 +1,4 @@
 package io.github.teamerrorbynight2020.model;
-
-import java.util.*;
 public class Beverage extends OrderItem {
 
   public static enum Size {
