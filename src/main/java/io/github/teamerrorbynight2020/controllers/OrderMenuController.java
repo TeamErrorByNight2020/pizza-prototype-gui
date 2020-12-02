@@ -27,9 +27,6 @@ public class OrderMenuController {
   mugRootBeerSizeChoice, dietRootBeerSizeChoice;
 
   @FXML
-  private ListView<OrderItem> orderListView;
-
-  @FXML
   private Label orderSubtotalLabel;
 
   @FXML
@@ -38,24 +35,42 @@ public class OrderMenuController {
   @FXML
   private Button completeOrderButton;
 
-  public void addOrderItem(OrderItem o) {
-    orderListView.getItems().add(o);
+  @FXML
+  private ListView<OrderItem> orderListView;
+
+  private List<OrderItem> getOrderItems() {
+    return orderListView.getItems();
   }
 
-  private int updateSubtotal() {
-    int subtotal = 0;
-    for (OrderItem o : orderListView.getItems()) {
-      subtotal += o.getPrice();
-    }
-    orderSubtotalLabel.setText(OrderItem.formatPriceString(subtotal));
-    return subtotal;
+  public void addOrderItem(OrderItem o) {
+    getOrderItems().add(o);
   }
 
   @FXML
   void handleDeleteItem(ActionEvent event) {
+    // get the index of the selected ListView item
     int selectedIndex = orderListView.getSelectionModel().getSelectedIndex();
-    orderListView.getItems().remove(selectedIndex);
-    updateSubtotal();
+    if (selectedIndex != -1) { // if an item is selected...
+      // delete it from the list.
+      getOrderItems().remove(selectedIndex);
+    }
+  }
+
+  private int getSubtotal() {
+    int subtotal = 0;
+    // Iterate over all the items in the cart.
+    for (OrderItem o : getOrderItems()) {
+      subtotal += o.getPrice();
+    }
+    // Set the
+
+    return subtotal;
+  }
+
+  private void updateSubtotalText() {
+    int subtotalPrice = getSubtotal();
+    String text = OrderItem.formatPriceString(subtotalPrice);
+    orderSubtotalLabel.setText(text);
   }
 
   @FXML
@@ -66,25 +81,17 @@ public class OrderMenuController {
       sizeChoice.getItems().setAll(Beverage.Size.values());
       sizeChoice.setValue(sizeChoice.getItems().get(0));
     }
+
     // ChangeListener: when an order is selected, enable the delete button
-    orderListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-      @Override
-      public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-        deleteItemButton.setDisable(newValue.intValue() == -1);
-      }
-    });
-    // Listener: When an item is added or removed, update the subtotal.
-    orderListView.getItems().addListener(new ListChangeListener<OrderItem>() {
-
-      @Override
-      public void onChanged(Change<? extends OrderItem> c) {
-        updateSubtotal();
-      }
-    });
-
-    updateSubtotal();
+    orderListView.getSelectionModel().selectedIndexProperty().addListener(
+    (ChangeListener<Number>) ((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+      deleteItemButton.setDisable(newValue.intValue() == -1);
+    }));
+    // EventListener: When an item is added or removed, update the subtotal.
+    orderListView.getItems().addListener((ListChangeListener<OrderItem>) (c -> updateSubtotalText()));
+    updateSubtotalText();
   }
-
+  
   @FXML
   void handleAddSmallPizza(ActionEvent event) {
     PizzaBuilderController.show(Pizza.Size.SMALL, this);
@@ -119,7 +126,6 @@ public class OrderMenuController {
   void handleAddBreadstickBites(ActionEvent event) {
     addOrderItem(new GenericOrderItem("Breadstick Bites", 200));
   }
-
 
   @FXML
   void handleAddPepsi(ActionEvent event) {
@@ -161,7 +167,7 @@ public class OrderMenuController {
   void handleCompleteOrder(ActionEvent event) {
     Alert alert = new Alert(AlertType.CONFIRMATION);
     alert.setTitle("Order Confirmation");
-    alert.setHeaderText("Your order total is " + OrderItem.formatPriceString(updateSubtotal()));
+    alert.setHeaderText("Your order total is " + OrderItem.formatPriceString(getSubtotal()));
     alert.setContentText("Are you sure you want to place your order? (This will end the prototype.)");
     if (alert.showAndWait().get().equals(ButtonType.OK)) {
       handleFinishOrder();
@@ -171,7 +177,7 @@ public class OrderMenuController {
   void handleFinishOrder() {
     Alert alert = new Alert(AlertType.INFORMATION);
     alert.setTitle("Order Confirmed.");
-    alert.setHeaderText("Thank you!" );
+    alert.setHeaderText("Thank you!");
     alert.setContentText("Your order has been recieved. We'll see you soon!");
     ((Stage) completeOrderButton.getScene().getWindow()).close();
     alert.showAndWait();
