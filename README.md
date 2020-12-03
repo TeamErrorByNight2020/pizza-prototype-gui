@@ -4,36 +4,22 @@
 
 A minimal pizza ordering system written in JavaFX. Created as a group project for SWE 3313.
 
-## Building the Project
+## Running the Program
 
-Requires having Maven and JDK installed.
+1. Download the latest JAR file from the [Releases](https://github.com/TeamErrorByNight2020/pizza-prototype-gui/releases) page.
 
-1. Download the repository.
+2. From command-line, execute `java -jar ./pizza-prototype-gui.jar`
 
-2. Execute `mvn install`
+## Development
 
-3. The distributable JAR should now exist at `target/pizza-prototype-gui-XXX-jar-with-dependencies.jar`.
+Requires having Maven and the JDK installed.
+
+1. Download or clone this repository to your computer.
+
+2. Execute `mvn javafx:run` to run the code and test changes.
+
+3. When ready for distribution, execute `mvn install`.
+
+4. A distributable JAR should now exist at `target/pizza-prototype-gui-XXX-jar-with-dependencies.jar`
    
-   Note: Currently, the build step also generates a `pizza-prototype-gui-XXX.jar`, which is not useable. This bundle should be ignored.
-   
-## Running the Executable
-
-1. From command-line, execute `java -jar ./pizza-prototype-gui.jar`
-
-## Building the Project
-
-Requires having Maven and JDK installed.
-
-1. Download the repository.
-
-2. Execute `mvn install`
-
-3. The distributable JAR should now exist at `target/pizza-prototype-gui-1.0-SNAPSHOT-jar-with-dependencies.jar`.
-   
-   Note: Currently, the build step also generates a `pizza-prototype-gui-1.0-SNAPSHOT.jar`, which is not useable. Hopefully the final project should not emit this file.
-   
-## Running the Project
-
-1. From command-line, execute `java -jar ./pizza-prototype-gui.jar`
-
-   The final submission should include an executable script which can run the file by double-clicking.
+   Note: Currently, the build step also generates a `pizza-prototype-gui-XXX.jar`, which is not useable. Maven is hard, and I don't know why it does this. This one should be ignored.
