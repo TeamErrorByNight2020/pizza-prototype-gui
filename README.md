@@ -1,5 +1,6 @@
 # pizza-prototype-gui
-A project for SWE 3313
+
+Created in under 30 days by Team EBN, as a group project for SWE 3313 at Kennesaw State University.
 
 ## Building the Project
 
