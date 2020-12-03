@@ -23,3 +23,9 @@ Requires having Maven and the JDK installed.
 4. A distributable JAR should now exist at `target/pizza-prototype-gui-XXX-jar-with-dependencies.jar`
    
    Note: Currently, the build step also generates a `pizza-prototype-gui-XXX.jar`, which is not useable. Maven is hard, and I don't know why it does this. This one should be ignored.
+
+## License
+
+MIT License
+
+Copyright (c) 2020 Team Error by Night
